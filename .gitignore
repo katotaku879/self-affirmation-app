@@ -1,0 +1,62 @@
+# Python関連
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# 仮想環境
+venv/
+env/
+ENV/
+.venv/
+
+# Streamlit関連
+.streamlit/secrets.toml
+
+# 個人データファイル（重要：これらは絶対にgitに含めない）
+streamlit_app.py/ai_chat_history.json
+streamlit_app.py/emotion_logs.json
+streamlit_app.py/emotion_logs_fixed.json
+streamlit_app.py/habit_records.json
+streamlit_app.py/ai_daily_logs.json
+streamlit_app.py/ai_weekly_reports.json
+streamlit_app.py/self_esteem_log.json
+streamlit_app.py/success_memories.json
+streamlit_app.py/analysis_report.json
+streamlit_app.py/analysis_thought_patterns.json
+streamlit_app.py/thought_patterns.json
+streamlit_app.py/tasks.json
+streamlit_app.py/values_history.json
+
+# すべての個人ログファイル（安全のため）
+streamlit_app.py/*_log*.json
+streamlit_app.py/*_history*.json
+streamlit_app.py/*_records*.json
+
+# ログファイル
+*.log
+
+# 一時ファイル
+temp/
+tmp/
+*.tmp
+
+# OS生成ファイル
+.DS_Store
+Thumbs.db
