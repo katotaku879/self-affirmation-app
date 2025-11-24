@@ -394,6 +394,7 @@ def show_emotion_log():
                     "negative": "#F44336"
                 }
             )
+            fig_emotion_types.update_layout(height=400, showlegend=True)
             st.plotly_chart(fig_emotion_types, use_container_width=True)
         
         with col2:
@@ -855,6 +856,9 @@ def show_emotion_log():
                 if filter_option != "すべて":
                     filter_map = {"ポジティブ": "positive", "ニュートラル": "neutral", "ネガティブ": "negative"}
                     sorted_logs = sorted_logs[sorted_logs['emotion_type'] == filter_map[filter_option]]
+
+                # 最新30件のみ表示（この行を追加）
+                sorted_logs = sorted_logs.head(30)    
                 
                 if sorted_logs.empty:
                     st.info(f"{filter_option}の感情ログはありません。")
