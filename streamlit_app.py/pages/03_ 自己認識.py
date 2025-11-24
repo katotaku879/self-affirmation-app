@@ -216,10 +216,15 @@ def initialize_awareness_files():
         save_values_snapshot(values_data)        
 
 # データ読み込み関数
+@st.cache_data(ttl=60)  # この行を追加
 def load_emotion_logs():
-    with open(EMOTION_LOGS_FILE, "r") as f:
-        data = json.load(f)
-    return pd.DataFrame(data) if data else pd.DataFrame(columns=["id", "date", "emotion", "intensity", "activity", "thoughts", "category"])
+    try:
+        with open(EMOTION_LOGS_FILE, "r", encoding='utf-8') as f:
+            data = json.load(f)
+        df = pd.DataFrame(data) if data else pd.DataFrame(columns=["id", "date", "emotion", "intensity", "activity", "thoughts", "category"])
+        return df
+    except (FileNotFoundError, json.JSONDecodeError):
+        return pd.DataFrame(columns=["id", "date", "emotion", "intensity", "activity", "thoughts", "category"])
 
 def load_strengths():
     with open(STRENGTHS_FILE, "r") as f:
@@ -239,8 +244,15 @@ def load_thought_patterns():
 
 # データ保存関数
 def save_emotion_logs(df):
-    with open(EMOTION_LOGS_FILE, "w") as f:
-        json.dump(df.to_dict("records"), f)
+    try:
+        data = df.to_dict("records")
+        with open(EMOTION_LOGS_FILE, "w", encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False)
+        load_emotion_logs.clear()  # キャッシュクリア
+        return True
+    except Exception as e:
+        st.error(f"保存エラー: {e}")
+        return False
 
 def save_strengths(strengths_data):
     with open(STRENGTHS_FILE, "w") as f:
