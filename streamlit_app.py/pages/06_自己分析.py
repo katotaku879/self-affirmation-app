@@ -193,7 +193,7 @@ SELF_ESTEEM_LOG_FILE = "self_esteem_log.json"
 # データファイルの初期化
 def initialize_analysis_files():
     if not os.path.exists(ANALYSIS_REPORT_FILE):
-        with open(ANALYSIS_REPORT_FILE, "w") as f:
+        with open(ANALYSIS_REPORT_FILE, "w", encoding='utf-8') as f:
             json.dump([], f)
     
     if not os.path.exists(THOUGHT_PATTERNS_FILE):
@@ -207,7 +207,7 @@ def initialize_analysis_files():
                 {"id": "growth_mindset", "name": "成長思考", "count": 0, "keywords": ["挑戦", "学習", "進歩", "努力"], "examples": [], "type": "positive"}
             ]
         }
-        with open(THOUGHT_PATTERNS_FILE, "w") as f:
+        with open(THOUGHT_PATTERNS_FILE, "w", encoding='utf-8') as f:
             json.dump(default_patterns, f)
     
     if not os.path.exists(STRENGTH_WEAKNESS_FILE):
@@ -224,11 +224,11 @@ def initialize_analysis_files():
                 {"id": "inconsistency", "name": "不一貫性", "score": 0, "evidence": []}
             ]
         }
-        with open(STRENGTH_WEAKNESS_FILE, "w") as f:
+        with open(STRENGTH_WEAKNESS_FILE, "w", encoding='utf-8') as f:
             json.dump(default_strengths, f)
     
     if not os.path.exists(SELF_ESTEEM_LOG_FILE):
-        with open(SELF_ESTEEM_LOG_FILE, "w") as f:
+        with open(SELF_ESTEEM_LOG_FILE, "w", encoding='utf-8') as f:
             json.dump([], f)
 
 # 初期化を実行
@@ -237,7 +237,7 @@ initialize_analysis_files()
 # データ読み込み関数
 def load_emotion_logs():
     try:
-        with open(EMOTION_LOGS_FILE, "r") as f:
+        with open(EMOTION_LOGS_FILE, "r", encoding='utf-8') as f:
             data = json.load(f)
         return pd.DataFrame(data) if data else pd.DataFrame()
     except (FileNotFoundError, json.JSONDecodeError):
@@ -245,7 +245,7 @@ def load_emotion_logs():
 
 def load_growth_data():
     try:
-        with open(GROWTH_DATA_FILE, "r") as f:
+        with open(GROWTH_DATA_FILE, "r", encoding='utf-8') as f:
             data = json.load(f)
         return pd.DataFrame(data) if data else pd.DataFrame()
     except (FileNotFoundError, json.JSONDecodeError):
@@ -253,7 +253,7 @@ def load_growth_data():
 
 def load_goals():
     try:
-        with open(GOALS_FILE, "r") as f:
+        with open(GOALS_FILE, "r", encoding='utf-8') as f:
             data = json.load(f)
         return pd.DataFrame(data) if data else pd.DataFrame()
     except (FileNotFoundError, json.JSONDecodeError):
@@ -261,7 +261,7 @@ def load_goals():
 
 def load_habit_records():
     try:
-        with open(HABIT_RECORDS_FILE, "r") as f:
+        with open(HABIT_RECORDS_FILE, "r", encoding='utf-8') as f:
             data = json.load(f)
         return pd.DataFrame(data) if data else pd.DataFrame()
     except (FileNotFoundError, json.JSONDecodeError):
@@ -269,7 +269,7 @@ def load_habit_records():
 
 def load_small_wins():
     try:
-        with open(SMALL_WINS_FILE, "r") as f:
+        with open(SMALL_WINS_FILE, "r", encoding='utf-8') as f:
             data = json.load(f)
         return pd.DataFrame(data) if data else pd.DataFrame()
     except (FileNotFoundError, json.JSONDecodeError):
@@ -277,7 +277,7 @@ def load_small_wins():
 
 def load_activity_log():
     try:
-        with open(ACTIVITY_LOG_FILE, "r") as f:
+        with open(ACTIVITY_LOG_FILE, "r", encoding='utf-8') as f:
             data = json.load(f)
         return pd.DataFrame(data) if data else pd.DataFrame()
     except (FileNotFoundError, json.JSONDecodeError):
@@ -285,7 +285,7 @@ def load_activity_log():
 
 def load_analysis_reports():
     try:
-        with open(ANALYSIS_REPORT_FILE, "r") as f:
+        with open(ANALYSIS_REPORT_FILE, "r", encoding='utf-8') as f:
             data = json.load(f)
         return pd.DataFrame(data) if data else pd.DataFrame()
     except (FileNotFoundError, json.JSONDecodeError):
@@ -293,21 +293,21 @@ def load_analysis_reports():
 
 def load_thought_patterns():
     try:
-        with open(THOUGHT_PATTERNS_FILE, "r") as f:
+        with open(THOUGHT_PATTERNS_FILE, "r", encoding='utf-8') as f:
             return json.load(f)
     except (FileNotFoundError, json.JSONDecodeError):
         return {"patterns": []}
 
 def load_strength_weakness():
     try:
-        with open(STRENGTH_WEAKNESS_FILE, "r") as f:
+        with open(STRENGTH_WEAKNESS_FILE, "r", encoding='utf-8') as f:
             return json.load(f)
     except (FileNotFoundError, json.JSONDecodeError):
         return {"strengths": [], "weaknesses": []}
 
 def load_self_esteem_log():
     try:
-        with open(SELF_ESTEEM_LOG_FILE, "r") as f:
+        with open(SELF_ESTEEM_LOG_FILE, "r", encoding='utf-8') as f:
             data = json.load(f)
         return pd.DataFrame(data) if data else pd.DataFrame()
     except (FileNotFoundError, json.JSONDecodeError):
@@ -315,19 +315,19 @@ def load_self_esteem_log():
 
 # データ保存関数
 def save_analysis_reports(df):
-    with open(ANALYSIS_REPORT_FILE, "w") as f:
+    with open(ANALYSIS_REPORT_FILE, "w", encoding='utf-8') as f:
         json.dump(df.to_dict("records"), f)
 
 def save_thought_patterns(patterns_data):
-    with open(THOUGHT_PATTERNS_FILE, "w") as f:
+    with open(THOUGHT_PATTERNS_FILE, "w", encoding='utf-8') as f:
         json.dump(patterns_data, f)
 
 def save_strength_weakness(strength_data):
-    with open(STRENGTH_WEAKNESS_FILE, "w") as f:
+    with open(STRENGTH_WEAKNESS_FILE, "w", encoding='utf-8') as f:
         json.dump(strength_data, f)
 
 def save_self_esteem_log(df):
-    with open(SELF_ESTEEM_LOG_FILE, "w") as f:
+    with open(SELF_ESTEEM_LOG_FILE, "w", encoding='utf-8') as f:
         json.dump(df.to_dict("records"), f)
 
 # マルチページアプリのタイトル
